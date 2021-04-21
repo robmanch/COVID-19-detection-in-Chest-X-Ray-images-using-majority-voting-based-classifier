@@ -1,0 +1,10 @@
+Dataset
+
+A machine learning or deep learning model will perform well when it has a good quality dataset. We acquire the data from two sources:
+
+1. GitHub repository:  https://github.com/ieee8023/covid-chestxray-dataset. From this source, we have imported the x-ray images of the
+   corona positive patient. This dataset consists of 930 positive patient x-ray images, and the dimension of each image is 968*768.
+
+2. Kaggle: https://www.kaggle.com/paultimothymooney/chest-xray-pneumonia. This is a dataset of pneumonia detection problems. As the normal
+   patient’s x-ray image is not available in the git hub repository, we have imported these scans from Kaggle. The dataset consists of 1341
+   normal patient x-ray images, and the dimension of each image is 2090 x 1858.
