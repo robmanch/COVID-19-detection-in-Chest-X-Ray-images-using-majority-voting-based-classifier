@@ -1,7 +1,7 @@
 # Coronavirus disease (COVID-19) detection in Chest X-Ray images using majority voting based classifier
 
 ## ABSTRACT
-One of the most challenging problems in the present world is the novel coronavirus disease (nCOVID-19). A recent study reveals that infected patients exhibit distinct radiographic visual characteristics coupled with fever, dry cough, fatigue, etc. A chest radiograph or a Chest X-Ray (CXR) is one of the clinical adjuncts that plays a vital role in the detection of the visual response associated with SARS-COV-2 infection. In this project, several machine learning algorithms (Logistic Regression, Support Vector Machine with Gaussian Kernel, Support Vector Machine with Linear Kernel, Naïve Bayes, and Decision Tree) and deep learning algorithms (VGG16, and Resnet101) have been used. Moreover, a custom majority voting-based classifier has been built, which will predict the result based on the majority votes of the top five algorithms (w.r.t f1-score). The best classifier's result was obtained with a majority voting-based classifier with the resulting f1-score of 0.9755.
+One of the most challenging problems in the present world is the novel coronavirus disease (nCOVID-19). A recent study reveals that infected patients exhibit distinct radiographic visual characteristics coupled with fever, dry cough, fatigue, etc. A chest radiograph or a Chest X-Ray (CXR) is one of the clinical adjuncts that plays a vital role in the detection of the visual response associated with SARS-COV-2 infection. In this project, several machine learning algorithms (Logistic Regression, Support Vector Machine with Gaussian Kernel, Support Vector Machine with Linear Kernel, Naïve Bayes, and Decision Tree) and deep learning algorithms (VGG16, and Resnet101) have been used to detect Coronavirus. Moreover, a custom majority voting-based classifier has been built, which will predict the result based on the majority votes of the top five algorithms (w.r.t f1-score). The best classifier's result was obtained with a majority voting-based classifier with the resulting f1-score of 0.9755.
 
 ## Project Goal
 The goal is to build an automatic screening system that can classify the given patient as a corona positive or negative. The input to our model is the chest x-ray images, and various models (machine learning and deep learning) have been used to predict the output (0 for normal, 1 for Corona).
@@ -52,7 +52,7 @@ A comprehensive data analysis has been performed on the dataset. Generally, EDA 
 ### Machine Learning Models
 In this study, several machine learning algorithms (Logistic Regression, Support Vector Machine with Gaussian Kernel, Support Vector Machine with Linear Kernel, Naïve Bayes, and Decision Tree) are used to classify the x-ray scans.
 
--	Logistic regression
+###	Logistic regression
 
 Logistic regression is a linear classifier, and its output gives the probability of the prediction being equal to 1 (y=1).
 
@@ -70,7 +70,7 @@ It shows the various metrics, such as precision, recall, and f1-score, to evalua
 
 <img src = "images/lm_cr.png">
 
--	Gaussian Naïve Bayes
+###	Gaussian Naïve Bayes
 
 Gaussian Naïve Bayes is a generative algorithm, and it is based on the Bayes Theorem. It is very computationally efficient, can be used as a base model to start.
 
@@ -87,7 +87,7 @@ Again, the number of false negative is very high.
 
 <img src = "images/nb_cr.png">
 
-- Support Vector Machine(Gaussian Kernel)
+### Support Vector Machine(Gaussian Kernel)
 
 SVM can use the strong mathematical foundation behind it to explore the problem. It is a non-linear classifier and can use the kernel trick. In SVM, it does not require to tune a lot of parameters, so it is a turn-key model which can be used as a baseline model. SVM using kernel trick can transform the lower-dimensional feature set to a higher dimensional feature set, so it will classify linearly in higher dimensions which becomes non-linear in lower dimensions. SVM with Gaussian kernel can even handle an infinite number of features. SVM could uncover the subtle radiological characteristics associated with COVID-19.
 
@@ -103,7 +103,7 @@ A text report showing the main classification metrics. Recall value is also incr
 
 <img src = "images/svm_cr.png">
 
-- Decision Tree
+### Decision Tree
 
 Decision Tree is also a non-linear classifier. It is a tree structures plan of a set of attributes to test to predict the output. It creates multi-decision boundaries. In classification, for training, GINI Impurity or Information Gain can be used as a loss function. It will help to select the feature at each decision node.  For prediction, the majority vote technique will be usedat the leaf node. Decision trees are very good at learning non-linear boundaries, but they are prone to overfitting, but various techniques can be used to reduce overfitting, such as limiting the depth of the tree, minimum number of samples required to split a node, etc.
 
@@ -121,7 +121,7 @@ First, in the case of the image as an input, many input features will cause the 
 Second, the traditional neural networks have to learn an enormous number of parameters making the computation expensive.
 As a solution, convolution neural networks (CNN) are used, thanks to its parameter sharing, due to which it does not have too many parameters to learn. Also, CNN has the sparsity of connections: the output depends only on a small number of inputs.
 
-- VGG16
+### VGG16
 
 Convolution neural networks can be the game-changer in the image classification problem. VGG16 is a convolution neural network architecture that won the ILSVR (ImageNet) competition in 2014. It is one of the best models to classify the images to date. VGG16 does not have too many parameters, and it has convolution layers of a 3x3 filter with a stride 
 1. Also, it uses the same padding with stride 
@@ -133,11 +133,11 @@ Convolution neural networks can be the game-changer in the image classification 
 
 #### Loss for training and validation set
 
-<img src = "images/vgg16_loss.png">
+<img src = "images/vgg_loss.png">
 
 To get the benefit of the pre-trained algorithm, the transfer learning technique has been used. The imagenet weights are used, and the model is not completely trained again. The top layers (input and output) are changed. Also, the binary cross-entropy is used as a loss function.
 
-- Resnet 101
+### Resnet 101
 
 Although deep networks are difficult to train because of the exploding or vanishing of gradients, Res-nets are used to train very deep learning networks with layers in the range of 100 to 150. And here the res-net with 101 layers is used.
 In res-net, the transfer learning technique is used to get the pre-trained model. These pre-trained models were trained on millions of images so they can predict output with good accuracy.
@@ -150,7 +150,7 @@ In res-net, the transfer learning technique is used to get the pre-trained model
 
 <img src = "images/resnet.png">
 
-## MAJORITY-VOTING BASED CLASSIFIER
+### MAJORITY-VOTING BASED CLASSIFIER
 In total we have seven algorithms (Machine learning-5, deep learning-2), the top five algorithms have been selected based on the f1-score. After this, a majority vote-based classifier ensemble is implemented to aggregate the prediction results of the top five supervised classification algorithms.
 
 Majority Voting based classifier acts as a multi-expert recommendation and reduces the probable chance of false diagnosis.
