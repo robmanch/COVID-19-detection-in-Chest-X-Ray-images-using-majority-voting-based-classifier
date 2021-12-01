@@ -13,6 +13,7 @@ The data is acquired from two sources:
 2.	Kaggle: https://www.kaggle.com/paultimothymooney/chest-xray-pneumonia. This is a dataset of pneumonia detection problems. As the normal patient’s x-ray image is not available in the git hub repository, so these scans are imported from Kaggle. The dataset consists of 1341 (shown in Fig1)  normal patient x-ray images, and the dimension of each image is 2090 x 1858.
 
 ### Frequency Plot of target distribution
+
 <img src = "images/frequency.png">
 
 ## Features
@@ -21,25 +22,30 @@ Firstly, images are converted into multi-dimensional NumPy arrays. For this purp
 ## EXPLORATORY DATA ANALYSIS’ INSIGHTS
 A comprehensive data analysis has been performed on the dataset. Generally, EDA comprises a brief analysis of the dataset, which helps our modeling process to proceed further. It also facilitates us to find some data insights which may not be visible directly. While performing EDA, some interesting insights were found, and these are:
 1.	Mean Image: While comparing the mean images of covid and normal scans, the covid scan is found to be blurrier than the normal scans.
+
 <img src = "images/mean_normal.jpg">
 
 2.	Difference Image: Instead of visualizing both average images, the difference between their mean values is taken and plotted.
+
 <img src = "images/diff.jpg">
 
 3.	Standard deviation/ Variance image: Standard deviation/ Variance in the normal image is sharper than the covid image.
+
 <img src = "images/std.jpg">
 
 4.	Fast Fourier transform image: The magnitude spectrum shows the magnitude of each frequency that is present in the image. The center of the magnitude spectrum has shifted to denote the zero frequency i.e. DC. It can be clearly seen that both images have their energy more concentrated at their low frequencies, but it seems that in the case of covid, the energy is more concentrated at low frequencies.
+
 <img src = "images/ft.jpg" height = 400>
 
 ## FEATURE ENGINEERING 
 -	Rescaling: One common preprocessing step in machine learning is to center and standardize our dataset, it will make the learning faster. Hence, pixel values are scaled to [0,1] by dividing 255 by it.
 -	Reshaping: To train sklearn machine learning algorithms, the independent features must have a shape of (m, n) where m denotes the total number of examples, and n is the independent features. 
 -	Data augmentation: Data Augmentation is a technique to expand the size of the training dataset without collecting new data. Also, Images coming from different sources may not have captured using a similar environment/setting. To overcome this issue, the augmentation techniques such as Shift (Horizontal/Vertical), Zoom, Flip (Horizontal/Vertical), Rotate have been used on the training set.
--	
+
 <img src = "images/aug.jpg">
 
 ### Frequency plot of the number of x-ray images after augmentation
+
 <img src = "images/freq_aug.png">
 
 ## MODELING APPROACHES
@@ -84,14 +90,17 @@ Again, the number of false negative is very high.
 - Support Vector Machine(Gaussian Kernel)
 
 SVM can use the strong mathematical foundation behind it to explore the problem. It is a non-linear classifier and can use the kernel trick. In SVM, it does not require to tune a lot of parameters, so it is a turn-key model which can be used as a baseline model. SVM using kernel trick can transform the lower-dimensional feature set to a higher dimensional feature set, so it will classify linearly in higher dimensions which becomes non-linear in lower dimensions. SVM with Gaussian kernel can even handle an infinite number of features. SVM could uncover the subtle radiological characteristics associated with COVID-19.
+
 <img src = "images/svm.png">
 
 #### Confusion Matrix
 SVM with gaussian kernel did a very good job on decreasing the number of FALSE NEGATIVE
+
 <img src = "images/svm_cm.png">
 
 #### Classification Report
 A text report showing the main classification metrics. Recall value is also increased to 0.97
+
 <img src = "images/svm_cr.png">
 
 - Decision Tree
@@ -145,15 +154,18 @@ In res-net, the transfer learning technique is used to get the pre-trained model
 In total we have seven algorithms (Machine learning-5, deep learning-2), the top five algorithms have been selected based on the f1-score. After this, a majority vote-based classifier ensemble is implemented to aggregate the prediction results of the top five supervised classification algorithms.
 
 Majority Voting based classifier acts as a multi-expert recommendation and reduces the probable chance of false diagnosis.
+
 <img src = "images/majority_voting.jpg">
 
 ## EVALUATION METRICS
 The performance of our model has been assessed by six performance measures:
 
 <img src = "images/metrics.png">
+
 Also, the ten-fold cross-validation is used to assess the model’s performance accurately.
 
 ## RESULTS AND DISCUSSION 
+
 <img src = "images/result.png">
 
 It can be clearly seen from the upper table that the majority voting-based classifier performed superior to the other algorithms. Majority Voting based classifier acts as a multi-expert recommendation and reduces the probable chance of false diagnosis.
